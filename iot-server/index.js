@@ -19,7 +19,7 @@ var pool  = mysql.createPool(DBCONFIG);
 //=============================================
 // Express initialization
 var app = express()
-spath="public";
+spath=__dirname+"/public";
 console.log(`Web Root = ${spath}!`);
 app.use(express.static(spath));
 app.use(bodyParser.json()); // support json encoded bodies

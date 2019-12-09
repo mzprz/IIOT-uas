@@ -1,0 +1,52 @@
+==================================
+NODE
+==================================
+Node
+- Siapin Sensor
+-- Kalibrasi 0-10ribu lux
+-- Ngirim ke CT
+
+- Siapin RGB
+-- Nerima (DV) & Kirim (DI) nilai R, G, B
+-- Nerima & Kirim status ON/OFF (OFF -> DI = [0,0,0], ON -> DI = DV), bikin topik sendiri ?
+
+- Siapin Tombol Mode
+-- Nerima status (Dari YS)
+-- Update status YI
+
+===============================
+WEB
+===============================
+
+Index
+- Login
+- Overview
+-- Node bisa dipilih salah satu
+-- Status sensor Brightness
+-- Status RGB
+
+Supervisory Single
+- Fasilitas Milih Node
+- Tampilan Sensor-sensor pada node
+- Dapat ON/OFF LED RGB
+- Atur Warna RGB
+
+Supervisory Multiple
+- Tampilan Sensor Brightness Seluruh node
+- Status LED Seluruh Node
+- Dapat memiiliih group node untuk diubah
+-- Ubah mode kontrol
+-- Ubah warna RGB
+- Atraksi
+
+Configure
+- Ubah Tag Node
+- Ubah Posisi
+- Ubah hak publish/subscribe (activate)
+
+Users*
+- Ubah User
+- Ubah hak user
+
+Profile
+- Logout

@@ -1,0 +1,33 @@
+<html>
+ <head>
+    <title>TF4016 - Industrial Internet of Things</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="script/jquery-3.4.1.min.js"></script>
+    <script src="script/bootstrap.min.js"></script>
+    <script src="script/mqtt.js"></script>
+
+ </head>
+ <body>
+
+    <ul class="header">
+        <li><img src="img/Logo_ITB.png" id="logo_itb"/></li>
+        <li>TF4061 - Industrial Internet of Things</li>
+    </ul>
+
+    <!-- menu keluar sesuai otentifikasi -->
+    <div id=menu></div>
+    <script src="script/auth-menu.js"></script>
+    <script>auth_page('supervise','menu')</script>
+    
+    <div id="e-heatmap"></div>
+
+    <div id="footer">(c) Teknik Fisika ITB, 2019</div>
+
+    <script type="text/javascript" src="script/heatmap.min.js"></script>
+    <script type="text/javascript" src="script/script-group.js"></script>
+ </body>
+</html>

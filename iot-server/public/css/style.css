@@ -20,6 +20,13 @@ h1.sec-title{
   font-family: monospace;
 }
 
+#e-led{
+  margin: auto;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+}
+
 .header {
     background-color: #000;
     list-style-type: none;

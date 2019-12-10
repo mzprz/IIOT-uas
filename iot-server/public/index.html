@@ -29,19 +29,25 @@
   </ul>
 
   <div class="container row">
-    <div class="col-md-8">
+    <div class="col-md-5">
       <!-- Section kiri  -->
-      <div class="row" style="height:75%">
-        <!-- Section untuk heatmap -->
-        <h1 class="sec-title"> Overview </h1>
-        <div id="e-heatmap"> </div>
-      </div>
+      <!-- Section untuk heatmap -->
+      <h1 class="sec-title"> Overview </h1>
+      <div id="e-heatmap"> </div>
+      <!-- </div> -->
 
-      <div class="row" style="height:25%">
-        <!-- section untuk status 1 node -->
-        <h1 class="sec-title"> Node Status </h1>
-        
-      </div>
+      <!-- section untuk status 1 node -->
+
+    </div>
+
+    <div class="col-md-3" style="text-align:center;">
+      <h1 class="sec-title"> Node Status </h1>
+      <div id="e-nodes" style="margin-bottom:20px;"> </div>
+      <p> Brightness :</p>
+        <p><span id="e-bright"> 0</span>
+        lx </p>
+      <p> LED : </p>
+        <div id="e-led"> </div>
     </div>
 
     <div class="col-md-4">
@@ -63,7 +69,7 @@
   </div>
 
   <script type="text/javascript" src="script/heatmap.min.js"></script>
-  <script type="text/javascript" src="script/script-group.js"></script>
+  <script type="text/javascript" src="script/script-index.js"></script>
 </body>
 
 </html>

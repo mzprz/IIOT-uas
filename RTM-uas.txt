@@ -7,46 +7,49 @@ Node
 -- Ngirim ke CT
 
 - Siapin RGB
--- Nerima (DV) & Kirim (DI) nilai R, G, B
--- Nerima & Kirim status ON/OFF (OFF -> DI = [0,0,0], ON -> DI = DV), bikin topik sendiri ?
+-- Nerima (DV) & Kirim (DI) nilai R, G, B (Setiap 1 detik)
 
-- Siapin Tombol Mode
+- Siapin Tombol Mode (+)
 -- Nerima status (Dari YS)
 -- Update status YI
+
+- Lampu indikator untuk YI
 
 ===============================
 WEB
 ===============================
 
 Index
-- Login
-- Overview
--- Node bisa dipilih salah satu
--- Status sensor Brightness
--- Status RGB
+- Login (OK)
+- Overview (OK)
+-- Overview Semua (OK)
+-- Node bisa dipilih salah satu (OK)
+-- Status sensor Brightness (OK)
+-- Status RGB (OK)
+== DIPERCANTIK
 
 Supervisory Single
-- Fasilitas Milih Node
-- Tampilan Sensor-sensor pada node
+- Fasilitas Milih Node (OK)
+- Tampilan Sensor-sensor pada node (OK)
 - Dapat ON/OFF LED RGB
-- Atur Warna RGB
+- Atur Warna RGB (DV Selalu bisa, tapi tegantung mode)
 
 Supervisory Multiple
-- Tampilan Sensor Brightness Seluruh node
-- Status LED Seluruh Node
-- Dapat memiiliih group node untuk diubah
--- Ubah mode kontrol
--- Ubah warna RGB
-- Atraksi
+- Tampilan Sensor Brightness Seluruh node 
+- Status LED Seluruh Node 
+- Dapat memilih group node untuk diubah 
+-- Ubah mode kontrol 
+-- Ubah warna RGB 
+- Atraksi 
 
 Configure
-- Ubah Tag Node
-- Ubah Posisi
+- Ubah Tag Node (OK)
+- Ubah Posisi (OK)
 - Ubah hak publish/subscribe (activate)
 
 Users*
-- Ubah User
-- Ubah hak user
+- Ubah User (OK)
+- Ubah hak user (OK)
 
 Profile
-- Logout
+- Logout (OK)

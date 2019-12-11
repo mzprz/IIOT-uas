@@ -37,17 +37,17 @@ Supervisory Single
 =====> DIPERCANTIK
 
 Supervisory Multiple
-- Tampilan Sensor Brightness Seluruh node 
-- Status LED Seluruh Node 
-- Dapat memilih group node untuk diubah 
--- Ubah mode kontrol 
--- Ubah warna RGB 
-- Atraksi 
+- Tampilan Sensor Brightness Seluruh node (OK)
+- Status LED Seluruh Node (OK)
+- Dapat memilih group node untuk diubah (OK)
+-- Ubah mode kontrol (OK)
+-- Ubah warna RGB (OK)
+- Atraksi (OK)
 
 Configure
 - Ubah Tag Node (OK)
 - Ubah Posisi (OK)
-- Ubah hak publish/subscribe (activate)
+- Ubah hak publish/subscribe (activate) 
 
 Users*
 - Ubah User (OK)

@@ -1,15 +1,17 @@
 // MQTT Broker
-
+var mosca = require("mosca");
 const MQTT_CONFIG = {
   http: { // Using HTTP protocol
     port: 3000,
     // host: '192.168.1.100',
-    bundle: true,
-  }
+    bundle: true
+  },
+  persistence: {
+      factory: mosca.persistence.Memory // so i can use retain function
+  },
 }
 
 // Embedded Mosca initialization
-var mosca = require("mosca");
 var server = new mosca.Server(MQTT_CONFIG);
 
 // Triggered when server status is ready

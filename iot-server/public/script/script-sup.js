@@ -1,4 +1,4 @@
-const BROKER_ADDR = '127.0.0.1';
+const BROKER_ADDR = '192.168.43.110';
 const BROKER_PORT = '3000';
 
 const SYS_TOPIC = 'TF-IIOT/';
@@ -76,7 +76,7 @@ var active_node_id=0;
 var active_tag="";
 var active_tag_id=0;
 var displayed_tags = ['CT', 'DI', 'YI'];
-var active_edit_tags = ['CC', 'YS', 'DVR', 'DVG', 'DVB'];
+var active_edit_tags = ['CC', 'YI', 'DVR', 'DVG', 'DVB'];
 var active_edit_tags_id = ['', '', '', '', '']; // ID CC, DVRGB, dan YS yang aktif
 
 // pointer agar cepat akses data chart
@@ -103,6 +103,9 @@ client.on('message', function(topic, message) {
     viewUpdateTag(tag, value);
     if (active_edit_tags.includes(fields[2])){
       viewUpdateTag(fields[2], value);
+      if(fields[2]=='YI'){
+        ys_s.setValue(value, triggerChangeEvent = true);
+      }
     }
     if (tag == active_tag) {
       viewUpdateChart(value);
@@ -206,11 +209,19 @@ async function viewTags() {
           active_tag_id = tag.ID;
           console.log("TAG_ID="+active_tag_id);
         }
+
+        activ2 = active_edit_tags.indexOf(tag.TAG.substr(0,2));
+        if (activ2 >= 0) {
+          active_edit_tags_id[activ2] = tag.ID;
+          console.log(tag.TAG + ' + ' + tag.ID)
+        }
+
       } else {
         activ2 = active_edit_tags.indexOf(tag.TAG.substr(0,2));
         activ3 = active_edit_tags.indexOf(tag.TAG.substr(0,3))
         if (activ2 >= 0) {
           active_edit_tags_id[activ2] = tag.ID;
+          console.log(tag.TAG + ' + ' + tag.ID)
         } else if (activ3 >= 0) { //RGB
           active_edit_tags_id[activ3] = tag.ID;
         }

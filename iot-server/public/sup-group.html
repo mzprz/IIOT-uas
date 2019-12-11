@@ -1,33 +1,261 @@
 <html>
- <head>
-    <title>TF4016 - Industrial Internet of Things</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="script/jquery-3.4.1.min.js"></script>
-    <script src="script/bootstrap.min.js"></script>
-    <script src="script/mqtt.js"></script>
+<head>
+  <title>TF4016 - Industrial Internet of Things</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
- </head>
- <body>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script/jquery-3.4.1.min.js"></script>
+  <script src="script/bootstrap.min.js"></script>
+  <script src="script/mqtt.js"></script>
+  <link rel="stylesheet" href="css/bootstrap-slider.min.css">
+  <script src="script/bootstrap-slider.min.js"></script>
 
-    <ul class="header">
-        <li><img src="img/Logo_ITB.png" id="logo_itb"/></li>
-        <li>TF4061 - Industrial Internet of Things</li>
-    </ul>
 
-    <!-- menu keluar sesuai otentifikasi -->
-    <div id=menu></div>
-    <script src="script/auth-menu.js"></script>
-    <script>auth_page('supervise','menu')</script>
-    
-    <div id="e-heatmap"></div>
+</head>
 
-    <div id="footer">(c) Teknik Fisika ITB, 2019</div>
+<body>
 
-    <script type="text/javascript" src="script/heatmap.min.js"></script>
-    <script type="text/javascript" src="script/script-group.js"></script>
- </body>
+  <ul class="header">
+    <li><img src="img/Logo_ITB.png" id="logo_itb" /></li>
+    <li>TF4061 - Industrial Internet of Things</li>
+  </ul>
+
+  <!-- menu keluar sesuai otentifikasi -->
+  <div id=menu></div>
+  <script src="script/auth-menu.js"></script>
+  <script>
+    auth_page('supervise', 'menu')
+  </script>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="sec-title"> Brightness </h1>
+        <div id="e-heatmap"></div>
+      </div>
+      <div class="col-md-6">
+        <h1 class="sec-title"> LEDs </h1>
+        <div id="e-ledmap">
+          <table class='table'>
+            <tr>
+              <td>
+                <div id="LED01" class='leds'> </div> 1
+              </td>
+              <td>
+                <div id="LED05" class='leds'> </div> 5
+              </td>
+              <td>
+                <div id="LED09" class='leds'> </div> 9
+              </td>
+              <td>
+                <div id="LED13" class='leds'> </div> 13
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="LED02" class='leds'> </div> 2
+              </td>
+              <td>
+                <div id="LED06" class='leds'> </div> 6
+              </td>
+              <td>
+                <div id="LED10" class='leds'> </div> 10
+              </td>
+              <td>
+                <div id="LED14" class='leds'> </div> 14
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="LED03" class='leds'> </div> 3
+              </td>
+              <td>
+                <div id="LED07" class='leds'> </div> 7
+              </td>
+              <td>
+                <div id="LED11" class='leds'> </div> 11
+              </td>
+              <td>
+                <div id="LED15" class='leds'> </div> 15
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="LED04" class='leds'> </div> 4
+              </td>
+              <td>
+                <div id="LED08" class='leds'> </div> 8
+              </td>
+              <td>
+                <div id="LED12" class='leds'> </div> 12
+              </td>
+              <td>
+                <div id="LED16" class='leds'> </div> 16
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 tombol-group">
+      <button type="button" onclick="initConfigure()" class="btn btn-primary"> Configure</button>
+      <button type="button" onclick="initAtraksi()" class="btn btn-primary" id="atraksi"> !!! </button>
+      <button type="button" onclick="initAtraksi2()" class="btn btn-primary" id="atraksi2"> ??? </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-xl">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Configure</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <table class='table'>
+                  <tr>
+                    <td> <input type="checkbox" id='NODE1'> NODE01 </td>
+                    <td> <input type="checkbox" id='NODE5'> NODE05 </td>
+                    <td> <input type="checkbox" id='NODE9'> NODE09 </td>
+                    <td> <input type="checkbox" id='NODE13'> NODE13 </td>
+                  </tr>
+                  <tr>
+                    <td> <input type="checkbox" id='NODE2'> NODE02 </td>
+                    <td> <input type="checkbox" id='NODE6'> NODE06 </td>
+                    <td> <input type="checkbox" id='NODE10'> NODE10 </td>
+                    <td> <input type="checkbox" id='NODE14'> NODE14 </td>
+                  </tr>
+                  <tr>
+                    <td> <input type="checkbox" id='NODE3'> NODE03 </td>
+                    <td> <input type="checkbox" id='NODE7'> NODE07 </td>
+                    <td> <input type="checkbox" id='NODE11'> NODE11 </td>
+                    <td> <input type="checkbox" id='NODE15'> NODE15 </td>
+                  </tr>
+                  <tr>
+                    <td> <input type="checkbox" id='NODE4'> NODE04 </td>
+                    <td> <input type="checkbox" id='NODE8'> NODE08 </td>
+                    <td> <input type="checkbox" id='NODE12'> NODE12 </td>
+                    <td> <input type="checkbox" id='NODE16'> NODE16 </td>
+                  </tr>
+                  </table>
+              </div>
+              <div class="row">
+
+                <div class="col-md-8">
+                  <table class='table'>
+                    <tr>
+                      <td> ROW </td>
+                      <td>
+                        1<input type="checkbox" id='ROW1' onclick="changeRow(1)">
+                        2<input type="checkbox" id='ROW2' onclick="changeRow(2)">
+                        3<input type="checkbox" id='ROW3' onclick="changeRow(3)">
+                        4<input type="checkbox" id='ROW4' onclick="changeRow(4)">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td> COL </td>
+                      <td>
+                        1<input type="checkbox" id='COL1' onclick="changeCol(1)">
+                        2<input type="checkbox" id='COL2' onclick="changeCol(2)">
+                        3<input type="checkbox" id='COL3' onclick="changeCol(3)">
+                        4<input type="checkbox" id='COL4' onclick="changeCol(4)">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-4">
+                  <td>
+                    <button type="button" class="btn btn-primary" style="margin-bottom: 5px;" onclick="selectAll()">Select All</button>
+                    <button type="button" class="btn btn-primary" onclick="deselectAll()">Deselect All</button>
+                  </td>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="col-md-6">
+              <div id="e-rgb" class="row">
+                <div class="col-md-6">
+                  <b> LED COLOR </b>
+                  <p>
+                    DVR :
+                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="triangle" />
+                  </p>
+
+                  <p>
+                    DVG :
+                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="triangle" />
+                  </p>
+
+                  <p>
+                    DVB :
+                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="triangle" />
+                  </p>
+                </div>
+
+                <div class='col-md-5 rgbmodal' id="RGB"></div>
+              </div>
+
+                <div class="row cont_CCYS" style="width:98%;">
+                  <div class="col-md-5">
+                    <div id="C_CC">
+                      CC<br>
+                      <input type="text" id="CC" value="0">
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                    MODE<br>
+                    <span id="C_YS">
+                      Manual
+                     <input id="sdr_ys" type="text"
+                              data-slider-id='ysslider'
+                              data-slider-min="0"
+                              data-slider-max="1"
+                              data-slider-step="1"
+                              data-slider-value="0"
+                              data-slider-tooltip="hide"
+                              data-slider-handle="round" />
+                      Auto
+                    </span>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="saveConfig()">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="footer">(c) Teknik Fisika ITB, 2019</div>
+
+  <script type="text/javascript" src="script/heatmap.min.js"></script>
+  <script type="text/javascript" src="script/script-group.js"></script>
+  <script type="text/javascript" src="script/select-helper.js"></script>
+</body>
+
 </html>

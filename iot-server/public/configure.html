@@ -23,7 +23,7 @@
         <li>TF4061 - Industrial Internet of Things</li>
     </ul>
 
-    <!-- menu keluar sesuai otentifikasi -->  
+    <!-- menu keluar sesuai otentifikasi -->
     <div id=menu></div>
     <script src="script/auth-menu.js"></script>
     <script>auth_page('configure','menu')</script>
@@ -59,15 +59,16 @@
 
         </div>
     </div>
-    
+
     <script>
         var tableName = 'node';
         var columns = [
                 { title: "Node", data: "NODE", render: function(data, type, row) {
                     return `<a href="tag.html?node=${row.ID}">${data}</a>`;
                 } },
-                { title: "PX", data: "PX" },
+                { title: "PX", data: "PX" }, 
                 { title: "PY", data: "PY" },
+                { title: "ACTIVE", data: "ACTIVE" },
                 { title: "#", data: "ID", render: function(data) {
                     return `<button class="btn btn-danger btn-sm" onclick="del('${tableName}',${data})">Del</button>`;
                 } }
@@ -91,6 +92,6 @@
             "onUpdate": myCallbackFunction
         });
     </script>
-    
+
 </body>
 </html>

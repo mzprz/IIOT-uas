@@ -47,7 +47,7 @@ Supervisory Multiple
 Configure
 - Ubah Tag Node (OK)
 - Ubah Posisi (OK)
-- Ubah hak publish/subscribe (activate) 
+- Ubah hak publish/subscribe (activate) (OK)
 
 Users*
 - Ubah User (OK)

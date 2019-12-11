@@ -46,6 +46,18 @@ app.get('/api/nodes', function (req, res) {
   });
 })
 
+app.get('/api/nodes_active', function (req, res) {
+  var sql = "SELECT * FROM node WHERE ACTIVE=1";
+
+  if (req.query.order) {
+    sql+=" ORDER BY "+req.query.order;
+  }
+  console.log('/api/nodes SQL:', sql);
+  pool.query(sql, function (err, result, fields) {
+      if (err) throw err;
+      res.send(result);
+  });
+})
 
 /* /api/node/:id
  Meminta satu node berdasar id, cara aman dari sql injection

@@ -86,7 +86,7 @@ client.on('message', function(topic, message) {
 //----------------------------------------------------
 // Fungsi-fungsi REST
 async function getNodes() {
-  url = '/api/nodes';
+  url = '/api/nodes_active';
   //console.log('Get :', url);
   response = await fetch(url);
   rjson = await response.json();

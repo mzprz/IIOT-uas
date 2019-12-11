@@ -75,6 +75,9 @@ var active_node="";
 var active_node_id=0;
 var active_tag="";
 var active_tag_id=0;
+var displayed_tags = ['CT', 'DI', 'YI'];
+var active_edit_tags = ['CC', 'YS', 'DVR', 'DVG', 'DVB'];
+var active_edit_tags_id = ['', '', '', '', '']; // ID CC, DVRGB, dan YS yang aktif
 
 // pointer agar cepat akses data chart
 var active_chart_title = config.data.datasets[0].title;
@@ -90,14 +93,17 @@ client.on('connect', function() {
 })
 
 // Run when message received
-client.on('message', function(topic, message) {   
+client.on('message', function(topic, message) {
     // decode topic
     // SYS/NODE/TAG/NUM
     fields = topic.split("/");
     tag = fields[2] + fields[3];
     value = parseInt(message.toString('utf-8'),10);
-    //console.log('Received %s = %d', tag, value);
+    // console.log('Received %s = %d', tag, value);
     viewUpdateTag(tag, value);
+    if (active_edit_tags.includes(fields[2])){
+      viewUpdateTag(fields[2], value);
+    }
     if (tag == active_tag) {
       viewUpdateChart(value);
     }
@@ -138,7 +144,7 @@ async function getData(tag_id, len) {
 // ------------------------------------------------------------
 // Fungsi-fungsi untuk update UI
 
-// fungsi ganti active_node 
+// fungsi ganti active_node
 // value berisi "node/node_id"
 async function onChangeNode(value) {
   // berhenti subscribe node lama
@@ -157,6 +163,7 @@ async function onChangeNode(value) {
 
   // tampilkan tags node baru
   await viewTags();
+  await initRGB();
 
   // tampilkan char node baru
   await viewChart();
@@ -192,11 +199,21 @@ async function viewTags() {
     // build table sesuai tags
     shtml=`<table class="table">`;
     for (tag of tags) {
-      shtml += `<tr><td>${tag.TAG}</td><td id="${tag.TAG}">0</td></tr>`;
-      // simpan tag_id agar nanti lebih cepat ambil data
-      if (tag.TAG == active_tag) {
-        active_tag_id = tag.ID;
-        console.log("TAG_ID="+active_tag_id);
+      if (displayed_tags.includes(tag.TAG.substr(0,2))){
+        shtml += `<tr><td>${tag.TAG}</td><td id="${tag.TAG}">0</td></tr>`;
+        // simpan tag_id agar nanti lebih cepat ambil data
+        if (tag.TAG == active_tag) {
+          active_tag_id = tag.ID;
+          console.log("TAG_ID="+active_tag_id);
+        }
+      } else {
+        activ2 = active_edit_tags.indexOf(tag.TAG.substr(0,2));
+        activ3 = active_edit_tags.indexOf(tag.TAG.substr(0,3))
+        if (activ2 >= 0) {
+          active_edit_tags_id[activ2] = tag.ID;
+        } else if (activ3 >= 0) { //RGB
+          active_edit_tags_id[activ3] = tag.ID;
+        }
       }
     }
     shtml+=`</table>`;
@@ -207,9 +224,21 @@ async function viewTags() {
   //console.log(shtml);
   // ganti element
   document.getElementById(E_TAGS).innerHTML = shtml;
+  await viewUpdateEditTags();
 }
 
-function viewUpdateTag(tag, value){ 
+async function viewUpdateEditTags() {
+  active_edit_tags_id.forEach(async function (tag, i) {
+    rdata2 = await getData(tag, 1);
+    // console.log('type : ' + typeof(rdata2[0]));
+    if (typeof(rdata2[0]) != 'undefined'){
+      // console.log(active_edit_tags[i]);
+      viewUpdateTag(active_edit_tags[i], rdata2[0].VALUE);
+    }
+  })
+}
+
+function viewUpdateTag(tag, value){
   e=document.getElementById(tag);
   if (e) {
     e.innerHTML = value;
@@ -220,7 +249,7 @@ function viewUpdateTag(tag, value){
 async function viewChart() {
   config.options.title.text = active_node;
   config.data.datasets[0].label = active_tag;
-  config.data.datasets[0].data = [];  
+  config.data.datasets[0].data = [];
 
   rdata = await getData(active_tag_id, 10);
   console.log("DATA = "+JSON.stringify(rdata));
@@ -239,9 +268,10 @@ function viewUpdateChart(value) {
     config.data.datasets[0].data.shift();
   }
   config.data.datasets[0].data.push(value).toFixed(2);
-  chart.update();  
+  chart.update();
 }
 
 var ctx = document.getElementById(E_CHART).getContext('2d');
 var chart = new Chart(ctx, config);
+
 viewNodes();

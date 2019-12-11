@@ -8,7 +8,13 @@ body {
 }
 
 #footer {
-    background-color: white;
+    background-color: black;
+    color: white;
+    padding:5px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 /* h1 {
@@ -16,7 +22,6 @@ body {
 } */
 
 h1.sec-title{
-  border-bottom: 20px;
   font-family: monospace;
 }
 
@@ -32,6 +37,7 @@ h1.sec-title{
     list-style-type: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 2px;
     width: 100%;
     text-align: left;
 }
@@ -151,4 +157,57 @@ h1.sec-title{
     width: 400px;
     height: 400px;
     background-color: steelblue;
+}
+
+/* ------------------------------ */
+#RGB {
+	height: 20px;
+	background: rgb(128, 128, 128);
+}
+#RC .slider-selection {
+	background: #FF8282;
+}
+#RC .slider-handle {
+	border-bottom-color: red;
+}
+#GC .slider-selection {
+	background: #428041;
+}
+#GC .slider-handle {
+	border-bottom-color: green;
+}
+#BC .slider-selection {
+	background: #8283FF;
+}
+#BC .slider-handle {
+	border-bottom-color: blue;
+}
+#R, #G, #B {
+	width: 300px;
+}
+/* ---------------------- */
+#ysslider{
+  width:100px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#ysslider .slider-selection {
+	background: red;
+}
+
+.cont_CCYS{
+  background-color: black;
+  color:white;
+  border-radius: 8px;
+  padding:10px 20px;
+  padding-bottom: 25px;
+  align-items: center;
+  text-align: center;
+}
+
+#CC {
+  align-items: center;
+  text-align: center;
+  width:70px;
 }

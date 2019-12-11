@@ -26,13 +26,15 @@ Index
 -- Node bisa dipilih salah satu (OK)
 -- Status sensor Brightness (OK)
 -- Status RGB (OK)
-== DIPERCANTIK
+=====> DIPERCANTIK
 
 Supervisory Single
 - Fasilitas Milih Node (OK)
 - Tampilan Sensor-sensor pada node (OK)
-- Dapat ON/OFF LED RGB
-- Atur Warna RGB (DV Selalu bisa, tapi tegantung mode)
+- Dapat ON/OFF LED RGB (Pilih Mode) (OK)
+- Atur Set Point CC (OK)
+- Atur Warna RGB (DV Selalu bisa, tapi tegantung mode) (OK)
+=====> DIPERCANTIK
 
 Supervisory Multiple
 - Tampilan Sensor Brightness Seluruh node 

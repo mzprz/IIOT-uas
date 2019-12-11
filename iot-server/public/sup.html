@@ -1,49 +1,100 @@
 <html>
- <head>
-    <title>TF4016 - Industrial Internet of Things</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="script/jquery-3.4.1.min.js"></script>
-    <script src="script/bootstrap.min.js"></script>
-    <script src="script/mqtt.js"></script>
+<head>
+  <title>TF4016 - Industrial Internet of Things</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
- </head>
- <body>
-     <div id="header">
-       <ul class="header">
-        <li><img src="img/Logo_ITB.png" id="logo_itb"/></li>
-        <li>TF4061 - Industrial Internet of Things</li>
-      </ul>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-slider.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script/jquery-3.4.1.min.js"></script>
+  <script src="script/bootstrap.min.js"></script>
+  <script src="script/bootstrap-slider.min.js"></script>
+  <script src="script/mqtt.js"></script>
+</head>
 
-      <!-- menu keluar sesuai otentifikasi -->
-      <div id="menu"></div>
-      <script src="script/auth-menu.js"></script>
-      <script>auth_page('supervise','menu')</script>
-    </div>
+<body>
+  <div id="header">
+    <ul class="header">
+      <li><img src="img/Logo_ITB.png" id="logo_itb" /></li>
+      <li>TF4061 - Industrial Internet of Things</li>
+    </ul>
 
-    <div class="container">
-        <div class="row">
-          <div id="col-left" class="col-sm-8">
-              <div class="graph">
-                  <canvas id="e-chart" width="100%"></canvas>
-              </div>        
+    <!-- menu keluar sesuai otentifikasi -->
+    <div id="menu"></div>
+    <script src="script/auth-menu.js"></script>
+    <script>auth_page('supervise','menu')</script>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div id="col-left" class="col-sm-8">
+        <div class="row graph">
+          <canvas id="e-chart" width="100%"></canvas>
+        </div>
+
+        <div class="row cont_CCYS">
+          <div class="col-md-6">
+            <div id="C_CC">
+              CC<br>
+              <input type="text" id="CC" onchange="CCSend()" value="0">
+            </div>
           </div>
-          <div id="col-right" class="col-sm-4">
-              <div id="e-nodes"></div>
-              <div id="e-tags"></div>
+          <div class="col-md-6">
+            MODE<br>
+            <span id="C_YS">
+              Manual
+             <input id="sdr_ys" type="text"
+                      data-slider-id='ysslider'
+                      data-slider-min="0"
+                      data-slider-max="1"
+                      data-slider-step="1"
+                      data-slider-value="0"
+                      data-slider-tooltip="hide"
+                      data-slider-handle="round" />
+              Auto
+            </span>
           </div>
         </div>
-    </div>
 
-    <div id="footer">
-      (c) Teknik Fisika ITB, 2019
-    </div>
+      </div>
+      <div id="col-right" class="col-sm-4">
+        <div id="e-nodes"></div>
+        <div id="e-tags"></div>
+        <div id="e-rgb">
+          <hr>
+          <b> LED COLOR </b>
+          <p>
+            DVR :
+            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="triangle" />
+          </p>
 
-    <script type="text/javascript" src="script/Chart.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="script/utils.js" charset="utf-8"></script>
-    <script type="text/javascript" src="script/script-sup.js" charset="utf-8"></script>
- </body>
+          <p>
+            DVG :
+            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="triangle" />
+          </p>
+
+          <p>
+            DVB :
+            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="triangle" />
+          </p>
+
+          <div id="RGB"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    (c) Teknik Fisika ITB, 2019
+  </div>
+
+  <script type="text/javascript" src="script/Chart.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="script/utils.js" charset="utf-8"></script>
+  <script type="text/javascript" src="script/script-sup.js" charset="utf-8"></script>
+  <script type="text/javascript" src="script/slider-helper.js"></script>
+
+</body>
+
 </html>
